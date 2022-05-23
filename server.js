@@ -16,7 +16,7 @@ server.use('/item', itemController)
 
 
 server.use('/', (req, res) => {
-    res.render('index')
+    res.render('index', {pageData : "home"})
 })
 
 
