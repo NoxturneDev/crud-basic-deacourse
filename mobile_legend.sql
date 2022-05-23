@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 05:20 PM
+-- Generation Time: May 23, 2022 at 05:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mobile_legend`
 --
-CREATE DATABASE IF NOT EXISTS `mobile_legend` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `mobile_legend`;
 
 -- --------------------------------------------------------
 
@@ -40,8 +38,7 @@ CREATE TABLE `hero` (
 --
 
 INSERT INTO `hero` (`id`, `name`, `role`) VALUES
-(73, 'Hayabusa', 'tanker'),
-(79, 'ursa', 'assassin');
+(1, 'Hayabusa', 'assassin');
 
 -- --------------------------------------------------------
 
@@ -54,16 +51,6 @@ CREATE TABLE `item` (
   `name` varchar(255) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `item`
---
-
-INSERT INTO `item` (`id`, `name`, `price`) VALUES
-(1, 'hayabusa', 3000),
-(2, 'anjay saawda', 5000),
-(26, 'test1', 3000),
-(27, 'test3', 600);
 
 --
 -- Indexes for dumped tables
@@ -89,13 +76,13 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `hero`
 --
 ALTER TABLE `hero`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
