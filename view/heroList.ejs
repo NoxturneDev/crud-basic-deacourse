@@ -10,13 +10,10 @@
 </head>
 
 <body class="flex">
-
-    <div class="sidebar">
-        <%- include('./components/sidebar.ejs', {pageData}) %>
-    </div>
+    <%- include('./components/sidebar.ejs', {pageData}) %>
 
     <main class="container-flex-col flex-grow mt-10">
-        <h1 class="header-lg mt-0 mb-2 text-teal-500 ">
+        <h1 class="page-title">
             <%= pageData.title %>
         </h1>
 

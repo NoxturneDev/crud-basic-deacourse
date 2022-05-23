@@ -83,4 +83,35 @@
     .active-text{
         @apply text-teal-400
     }
+
+    /* MAIN STYLE */
+    /* SIDEBAR */
+    .sidebar-wrapper{
+        @apply w-64
+    }
+    .sidebar{
+        @apply overflow-y-auto py-4 px-3 min-h-screen shadow-xl
+    }
+    .sidebar-link{
+        @apply center-element p-2 text-base font-medium text-gray-400 rounded-lg hover:bg-gray-50 hover:text-teal-500 active:bg-teal-400 active:text-white
+    }
+    .sidebar-link-icon{
+        @apply flex-shrink-0 w-6 h-6 transition duration-75 group-hover:text-teal-500 group-active:text-white
+    }
+    .sidebar-link-text{
+        @apply flex-1 ml-3 whitespace-nowrap 
+    }
+    .dashboard{
+        @apply flex items-center pl-2.5 mb-5
+    }
+    .dashboard-text{
+        @apply self-center text-xl whitespace-nowrap text-teal-500 font-bold
+    }
+
+    /* MAIN PAGE */
+    .page-title{
+        @apply header-lg mt-0 mb-2 text-teal-500 
+    }
+    /* EDIT PAGE */
+   
 }
