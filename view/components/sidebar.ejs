@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIDEBAR</title>
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <aside class="w-64 border-r-teal-500" aria-label="Sidebar">
+        <div class="overflow-y-auto py-4 px-3 min-h-screen shadow-xl">
+            <a href="/" class="flex items-center pl-2.5 mb-5">
+                <span class="self-center text-xl whitespace-nowrap text-teal-500 font-bold">DASHBOARD</span>
+            </a>
+            <ul class="space-y-2">
+                <li>
+                    <a href="/hero" class="group flex items-center p-2 text-base font-medium text-gray-400 rounded-lg hover:bg-gray-50 hover:text-teal-500 active:bg-teal-400 active:text-white transition duration-75 <%=(pageData.db == 'hero' ? 'active-bg' : 'text-gray-300')%>">
+                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 <%=(pageData.db == 'hero' ? 'active-text' : '')%> group-hover:text-teal-500 group-active:text-white"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap <%=(pageData.db == 'hero' ? 'active-text' : '')%>">
+                            Hero
+                        </span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="/item"
+                        class="group flex items-center p-2 text-base font-medium text-gray-400 rounded-lg hover:bg-gray-50 hover:text-teal-500 active:bg-teal-400 active:text-white transition duration-75 <%=(pageData.db == 'item' ? 'active-bg' : '')%>">
+                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 group-hover:text-teal-500 group-active:text-white <%=(pageData.db == 'item' ? 'active-text' : 'text-gray-400')%>"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z">
+                            </path>
+                            <path
+                                d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap <%=(pageData.db == 'item' ? 'active-text' : 'text-gray-400')%>">Item</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /* BUTTON */
+    .btn{
+        @apply  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 transition duration-75 cursor-pointer
+    }
+    .btn-primary{
+        @apply btn text-white bg-teal-400 hover:bg-teal-600 focus:ring-teal-300
+    }
+    .btn-danger{
+        @apply btn text-red-300 bg-gray-100 hover:bg-red-300 hover:text-gray-100 focus:ring-red-300
+    }
+    .btn-danger-fill{
+        @apply btn bg-red-500 text-white hover:bg-red-700
+    }
+
+
+    /* CONTAINER */
+    .container{
+        @apply flex items-center justify-center bg-cover bg-center gap-5 px-10
+    }
+
+    .container-flex-col {
+        @apply container flex-col
+    }
+
+
+    /* THYPOGRAPHY */
+    .header{
+        @apply text-xl font-bold leading-normal 
+    }
+
+    .header-md{
+        @apply text-2xl font-bold leading-normal 
+
+    }
+    .header-lg{
+        @apply text-3xl font-extrabold leading-normal 
+
+    }
+
+    .header-primary{
+        @apply header-md text-teal-500
+    }
+
+
+    /* POSITION */
+    .center-element{
+        @apply flex justify-center items-center
+    }
+    .center-element-col{
+        @apply flex justify-center items-center flex-col
+    }
+
+
+    /* FORMS */
+    .input-text{
+        @apply px-2 py-2 relative rounded text-sm border-0 shadow outline-none focus:outline-none w-full
+    }
+    .input-text-primary{
+       @apply bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full outline-none px-2 py-2
+    }
+
+
+    /* MODAL */
+    .modal-overlay{
+        @apply center-element overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-10 md:inset-0 md:h-full backdrop-blur-sm backdrop-brightness-75
+    }
+    .modal-container{
+        @apply relative p-4 w-full max-w-md h-full md:h-auto
+    }
+    .modal-box{
+        @apply center-element-col relative rounded-lg shadow-md p-5
+    }
+
+    /* STYLE */
+    .active-bg{
+        @apply bg-teal-100
+    }
+    .active-text{
+        @apply text-teal-400
+    }
+}

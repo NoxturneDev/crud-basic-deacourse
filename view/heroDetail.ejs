@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="flex">
+    <%- include('./components/sidebar.ejs', (pageData=hero)) %>
+        <main
+            class="flex items-center justify-center flex-col h-screen bg-gray-50 bg-cover bg-center gap-5 px-10 flex-grow">
+            <div class="header-primary">CURRENT DATA</div>
+
+            <!-- UPDATE CONFIRMATION MODAL -->
+            <div id="update-popup-modal" tabindex="-1" class="hidden modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-box bg-white">
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500" id="delete-popup-text" data-name="hero"
+                                data-role="tank">Are you sure?</h3>
+                            <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
+                                class="update-modal-btn btn-primary">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-toggle="add-popup-modal" data-action="cancel" type="button"
+                                class="update-modal-btn btn-danger">No,
+                                cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
+                <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
+                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Hero Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Role
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="heroRow bg-white shadow-md my-2 border-b-teal-800" data-hidden="false"
+                            data-name="<%=hero.name%>">
+                            <td class="px-6 py-4 my-2">
+                                <%= hero.data[0].id %>
+                            </td class="px-6 py-4">
+                            <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
+                                <%= hero.data[0].name %>
+                            </th>
+                            <td class="px-6 py-4">
+                                <%= hero.data[0].role %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="header-primary">EDIT DATA</div>
+            <table class="w-full text-sm text-left text-gray-700">
+                <form action="/hero/update" method="post" id="updateForm">
+                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                New name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                New role
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="heroRow bg-white  shadow-md my-2 border-b-teal-800">
+                            <td class="px-6 py-4 my-2">
+                                <input type="text" id="id" name="id" value="<%=hero.data[0].id%>" hidden>
+                            </td class="px-6 py-4">
+                            <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
+                                <input type="text" id="name" name="name" class="input-text-primary"
+                                    value="<%= hero.data[0].name %>">
+                            </th>
+                            <td class="px-6 py-4">
+                                <div class="mr-6">
+                                    <input type="text" id="role" name="role" class="input-text-primary"
+                                        value="<%= hero.data[0].role %>">
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
+            <div class="center-element gap-5">
+                <button class="btn-primary" id="update-popup-btn">Update</button>
+                <a href="/hero"> <button class="btn-danger-fill">Cancel</button></a>
+            </div>
+
+
+
+        </main>
+        <script>
+            const updateForm = document.getElementById('updateForm')
+            const updateModalToggleBtn = document.getElementById('update-popup-btn')
+            const updatePopupModal = document.getElementById('update-popup-modal')
+            const btnConfirmation = document.querySelectorAll('.update-modal-btn')
+
+            updateModalToggleBtn.addEventListener('click', (e) => {
+                e.preventDefault()
+
+                updatePopupModal.classList.remove('hidden')
+            })
+
+            btnConfirmation.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.dataset.action
+
+                    if (action == "confirm") {
+                        updateForm.submit()
+                    } else {
+                        updatePopupModal.classList.add('hidden')
+                    }
+                })
+            })
+        </script>
+</body>
+
+</html>
