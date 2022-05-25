@@ -12,275 +12,280 @@
 <body class="flex">
     <%- include('./components/sidebar.ejs', {pageData}) %>
 
-    <main class="container-flex-col flex-grow mt-10">
-        <h1 class="page-title">
-            <%= pageData.title %>
-        </h1>
+        <main class="main-container">
+            <h1 class="page-title">
+                <%= pageData.title %>
+            </h1>
 
-        <!-- ADD NEW DATA MODAL -->
-        <div class="hidden modal-overlay add-new-modal">
-            <div class="modal-container">
-                <form action="/hero/add" method="post" id="addForm" class="modal-box bg-white pb-14">
-                    <div class="mb-3 pt-0">
-                        <h3 class="header-md text-teal-400">ADD NEW DATA</h3>
-                    </div>
-                    <div class="mb-3 pt-0 w-full">
-                        <input type="text" placeholder="Hero Name" name="name" id="input-hero-name"
-                            class="input-text-primary" />
-                    </div>
-                    <div class="mb-3 pt-0 w-full">
-                        <input type="text" placeholder="Role" name="role" id="input-hero-role"
-                            class="input-text-primary " />
-                    </div>
-                    <div class="center-element w-full">
-                        <input type="submit" value="Add" class="btn-primary add-form-btn" />
-                        <input type="submit" value="Cancel" class="btn-danger add-form-btn" />
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- ADD MODAL -->
-        <div id="add-popup-modal" tabindex="-1" class="hidden modal-overlay">
-            <div class="modal-container">
-                <div class="modal-box bg-white">
-                    <div class="p-6 text-center">
-                        <svg class="mx-auto mb-4 w-14 h-14 text-red-400 " fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <h3 class="mb-5 text-lg font-normal text-gray-500" id="add-popup-text" data-name="hero"
-                            data-role="tank">Are you sure?</h3>
-                        <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
-                            class="add-modal-btn btn-primary">
-                            Yes, I'm sure
-                        </button>
-                        <button data-modal-toggle="add-popup-modal" data-action="cancel" type="button"
-                            class="add-modal-btn btn-danger">No,
-                            cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DELETE MODAL -->
-        <div id="delete-popup-modal" tabindex="-1" class="hidden modal-overlay">
-            <div class="modal-container">
-                <div class="modal-box bg-white">
-                    <div class="p-6 text-center">
-                        <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <h3 class="mb-5 text-lg font-normal text-gray-500" id="delete-popup-text" data-name="hero"
-                            data-role="tank">Are you sure?</h3>
-                        <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
-                            class="delete-modal-btn btn-primary">
-                            Yes, I'm sure
-                        </button>
-                        <button data-modal-toggle="add-popup-modal" data-action="cancel" type="button"
-                            class="delete-modal-btn btn-danger">No,
-                            cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ACTION -->
-        <section class="flex gap-2 w-full">
-            <!-- SEARCH BAR -->
-            <div class="search-form-container basis-2/4">
-                <form class="flex items-center search-form">
-                    <label for="simple-search" class="sr-only">Search</label>
-                    <div class="relative w-full">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+            <!-- ADD NEW DATA MODAL -->
+            <div class="hidden modal-overlay add-new-modal">
+                <div class="modal-container">
+                    <form action="/hero/add" method="post" id="addForm" class="modal-box bg-white pb-14">
+                        <div class="mb-3 pt-0">
+                            <h3 class="header-md text-teal-400">ADD NEW DATA</h3>
                         </div>
-                        <input type="text" id="search-data" class="input-text-primary pl-10 p-2.5"
-                            placeholder="Hero's name">
+                        <div class="mb-3 pt-0 w-full">
+                            <input type="text" placeholder="Hero Name" name="name" id="input-hero-name"
+                                class="input-text-primary" />
+                        </div>
+                        <div class="mb-3 pt-0 w-full">
+                            <input type="text" placeholder="Role" name="role" id="input-hero-role"
+                                class="input-text-primary " />
+                        </div>
+                        <div class="center-element w-full">
+                            <input type="submit" value="Add" class="btn-primary add-form-btn" />
+                            <input type="submit" value="Cancel" class="btn-danger add-form-btn" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ADD MODAL -->
+            <div id="add-popup-modal" tabindex="-1" class="hidden modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-box bg-white">
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 w-14 h-14 text-red-400 " fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500" id="add-popup-text" data-name="hero"
+                                data-role="tank">Are you sure?</h3>
+                            <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
+                                class="add-modal-btn btn-primary">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-toggle="add-popup-modal" data-action="cancel" type="button"
+                                class="add-modal-btn btn-danger">No,
+                                cancel</button>
+                        </div>
                     </div>
-                    <button type="submit"
-                        class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-400 rounded-lg border border-teal-700 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 "><svg
-                            class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg></button>
-                </form>
-            </div>
-            <!-- BUTTON ADD NEW -->
-            <div class="button-container flex-grow text-right">
-                <button type="button" class="btn-primary" id="add-form-show">Add New</button>
+                </div>
             </div>
 
-        </section>
+            <!-- DELETE MODAL -->
+            <div id="delete-popup-modal" tabindex="-1" class="hidden modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-box bg-white">
+                        <div class="p-6 text-center">
+                            <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500" id="delete-popup-text" data-name="hero"
+                                data-role="tank">Are you sure?</h3>
+                            <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
+                                class="delete-modal-btn btn-primary">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-toggle="add-popup-modal" data-action="cancel" type="button"
+                                class="delete-modal-btn btn-danger">No,
+                                cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ACTION -->
+            <section class="flex gap-2 w-full">
+                <!-- SEARCH BAR -->
+                <div class="search-form-container basis-2/4">
+                    <form class="flex items-center search-form">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input type="text" id="search-data" class="input-text-primary pl-10 p-2.5"
+                                placeholder="Hero's name">
+                        </div>
+                        <button type="submit"
+                            class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-400 rounded-lg border border-teal-700 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 "><svg
+                                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg></button>
+                    </form>
+                </div>
+                <!-- BUTTON ADD NEW -->
+                <div class="button-container flex-grow text-right">
 
-        <!-- TABLE -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
-            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
-                <thead class="text-xs text-teal-500 uppercase bg-gray-100">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Hero Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Role
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-center">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(const hero of pageData.data) { %>
-                        <tr class="data-row bg-white hover:bg-teal-200 shadow-md my-2 border-b-teal-800"
-                            data-hidden="false" data-name="<%=hero.name%>">
-                            <td class="px-6 py-4 my-2">
-                                <%= hero.id %>
-                            </td class="px-6 py-4">
-                            <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
-                                <%= hero.name.toUpperCase() %>
+                    <button type="button" class="btn-primary" id="add-form-show"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>Add New</button>
+                </div>
+
+            </section>
+
+            <!-- TABLE -->
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
+                <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
+                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
                             </th>
-                            <td class="px-6 py-4">
-                                <%= hero.role %>
-                            </td>
-                            <td class="text-center center-element py-2">
-                                <a href="/hero/<%= hero.id %>" class="btn-primary">Edit</a>
-                                <form action="hero/remove" method="post" class="delete-form" data-id="<%=hero.id%>">
-                                    <input type="text" hidden name="id" value="<%=hero.id%>">
-                                    <input type="submit" value="Delete" class="btn-danger-fill  delete-data"
-                                        data-id="<%=hero.id%>">
-                                </form>
-                            </td>
+                            <th scope="col" class="px-6 py-3">
+                                Hero Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Role
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center">
+                                Action
+                            </th>
                         </tr>
-                        <% } %>
-                </tbody>
-            </table>
-        </div>
-    </main>
+                    </thead>
+                    <tbody>
+                        <% for(const hero of pageData.data) { %>
+                            <tr class="data-row bg-white hover:bg-teal-200 shadow-md my-2 border-b-teal-800"
+                                data-hidden="false" data-name="<%=hero.name%>">
+                                <td class="px-6 py-4 my-2">
+                                    <%= hero.id %>
+                                </td class="px-6 py-4">
+                                <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
+                                    <%= hero.name.toUpperCase() %>
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= hero.role %>
+                                </td>
+                                <td class="text-center center-element py-2">
+                                    <a href="/hero/<%= hero.id %>" class="btn-primary">Edit</a>
+                                    <form action="hero/remove" method="post" class="delete-form" data-id="<%=hero.id%>">
+                                        <input type="text" hidden name="id" value="<%=hero.id%>">
+                                        <input type="submit" value="Delete" class="btn-danger-fill  delete-data"
+                                            data-id="<%=hero.id%>">
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </main>
 
 
-    <script>
-        // SEARCH FUNCTION
-        const searchInput = document.getElementById('search-data')
-        const searchForm = document.querySelector('.search-form')
-        const tableRow = document.querySelectorAll('.data-row')
+        <script>
+            // SEARCH FUNCTION
+            const searchInput = document.getElementById('search-data')
+            const searchForm = document.querySelector('.search-form')
+            const tableRow = document.querySelectorAll('.data-row')
 
-        searchForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            searchData(searchInput.value.trim().toLowerCase())
-            searchInput.value = ''
-        })
-
-        function searchData(input) {
-            tableRow.forEach(data => {
-                if (data.dataset.name.toLowerCase() == input) {
-                    data.classList.remove('hidden')
-                    console.log("data found")
-                } else if (input == '') {
-                    data.classList.remove('hidden')
-                } else if (input !== data.dataset.name.toLowerCase()) {
-                    data.classList.add('hidden')
-                    // notFoundDialog.classList.remove('hidden')
-                }
-                // console.log(data.dataset.name)
-            })
-            console.log("input: " + input)
-        }
-
-        // ADD DIALOG
-        const addFormBtn = document.querySelectorAll('.add-form-btn')
-        const addFormModal = document.querySelector('.add-new-modal')
-        const addForm = document.getElementById('addForm')
-        const btnShowAddDialog = document.getElementById('add-form-show')
-        const addModalBtn = document.querySelectorAll(".add-modal-btn")
-        const addPopUpModal = document.getElementById("add-popup-modal")
-
-        btnShowAddDialog.addEventListener('click', () => {
-            addFormModal.classList.remove('hidden')
-        })
-
-        addModalBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const action = btn.dataset.action
-
-                if (action == "confirm") {
-                    addForm.submit()
-                } else {
-                    addPopUpModal.classList.add('hidden')
-                }
-            })
-        })
-
-        addFormBtn.forEach(btn => {
-            btn.addEventListener('click', e => {
+            searchForm.addEventListener('submit', (e) => {
                 e.preventDefault()
-
-                const popupText = document.getElementById('add-popup-text')
-                const inputName = document.getElementById('input-hero-name')
-                const inputRole = document.getElementById('input-hero-role')
-
-                console.log(btn.value)
-                if (btn.value == "Add") {
-                    console.log(inputName.value, inputRole.value)
-                    const heroName = inputName.value
-                    const heroRole = inputRole.value
-                    popupText.innerText = `Name: ${heroName}, Role: ${heroRole}, are you sure to add this data?`
-                    addPopUpModal.classList.remove('hidden')
-                } else {
-                    addFormModal.classList.add('hidden')
-                }
+                searchData(searchInput.value.trim().toLowerCase())
+                searchInput.value = ''
             })
-        })
 
-        // DELETE DIALOG
-        const deletePopup = document.getElementById("delete-popup-modal")
-        const deleteBtn = document.querySelectorAll('.delete-data')
-        const deleteModalBtn = document.querySelectorAll(".delete-modal-btn")
-        const deleteForm = document.querySelectorAll('.delete-form')
+            function searchData(input) {
+                tableRow.forEach(data => {
+                    if (data.dataset.name.toLowerCase() == input) {
+                        data.classList.remove('hidden')
+                        console.log("data found")
+                    } else if (input == '') {
+                        data.classList.remove('hidden')
+                    } else if (input !== data.dataset.name.toLowerCase()) {
+                        data.classList.add('hidden')
+                        // notFoundDialog.classList.remove('hidden')
+                    }
+                    // console.log(data.dataset.name)
+                })
+                console.log("input: " + input)
+            }
 
-        let id;
+            // ADD DIALOG
+            const addFormBtn = document.querySelectorAll('.add-form-btn')
+            const addFormModal = document.querySelector('.add-new-modal')
+            const addForm = document.getElementById('addForm')
+            const btnShowAddDialog = document.getElementById('add-form-show')
+            const addModalBtn = document.querySelectorAll(".add-modal-btn")
+            const addPopUpModal = document.getElementById("add-popup-modal")
 
-        deleteBtn.forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.preventDefault()
-
-                id = btn.dataset.id
-                deletePopup.classList.remove('hidden')
+            btnShowAddDialog.addEventListener('click', () => {
+                addFormModal.classList.remove('hidden')
             })
-        })
 
-        deleteModalBtn.forEach(btn => {
-            btn.addEventListener('click', e => {
-                const action = btn.dataset.action
+            addModalBtn.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.dataset.action
 
-                console.log("current id: " + id)
-                if (action == "confirm") {
-                    deleteData(id)
-                } else {
-                    deletePopup.classList.add('hidden')
-                }
+                    if (action == "confirm") {
+                        addForm.submit()
+                    } else {
+                        addPopUpModal.classList.add('hidden')
+                    }
+                })
             })
-        })
 
-        function deleteData(id) {
-            deleteForm.forEach(data => {
-                console.log("data id is: " + data.dataset.id)
-                if (id == data.dataset.id) {
-                    data.submit()
-                }
+            addFormBtn.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.preventDefault()
+
+                    const popupText = document.getElementById('add-popup-text')
+                    const inputName = document.getElementById('input-hero-name')
+                    const inputRole = document.getElementById('input-hero-role')
+
+                    console.log(btn.value)
+                    if (btn.value == "Add") {
+                        console.log(inputName.value, inputRole.value)
+                        const heroName = inputName.value
+                        const heroRole = inputRole.value
+                        popupText.innerText = `Name: ${heroName}, Role: ${heroRole}, are you sure to add this data?`
+                        addPopUpModal.classList.remove('hidden')
+                    } else {
+                        addFormModal.classList.add('hidden')
+                    }
+                })
             })
-        }
-    </script>
+
+            // DELETE DIALOG
+            const deletePopup = document.getElementById("delete-popup-modal")
+            const deleteBtn = document.querySelectorAll('.delete-data')
+            const deleteModalBtn = document.querySelectorAll(".delete-modal-btn")
+            const deleteForm = document.querySelectorAll('.delete-form')
+
+            let id;
+
+            deleteBtn.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.preventDefault()
+
+                    id = btn.dataset.id
+                    deletePopup.classList.remove('hidden')
+                })
+            })
+
+            deleteModalBtn.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    const action = btn.dataset.action
+
+                    console.log("current id: " + id)
+                    if (action == "confirm") {
+                        deleteData(id)
+                    } else {
+                        deletePopup.classList.add('hidden')
+                    }
+                })
+            })
+
+            function deleteData(id) {
+                deleteForm.forEach(data => {
+                    console.log("data id is: " + data.dataset.id)
+                    if (id == data.dataset.id) {
+                        data.submit()
+                    }
+                })
+            }
+        </script>
 </body>
 
 </html>

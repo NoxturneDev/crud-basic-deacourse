@@ -112,6 +112,9 @@
     .page-title{
         @apply header-lg mt-0 mb-2 text-teal-500 
     }
+    .main-container{
+        @apply container-flex-col flex-grow mt-10 justify-start
+    }
     /* EDIT PAGE */
    
 }
