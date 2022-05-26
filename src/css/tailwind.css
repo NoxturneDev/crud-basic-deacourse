@@ -76,6 +76,11 @@
         @apply center-element-col relative rounded-lg shadow-md p-5
     }
 
+    /* ICONS */
+    .icon{
+        @apply mx-auto mb-4 w-14 h-14 text-red-400
+    }
+
     /* STYLE */
     .active-bg{
         @apply bg-teal-100
@@ -114,6 +119,24 @@
     }
     .main-container{
         @apply container-flex-col flex-grow mt-10 justify-start
+    }
+
+    .add-form-modal{
+        @apply modal-overlay 
+    }
+
+    /* TABLE */
+    .table-container{
+        @apply relative overflow-x-auto shadow-md sm:rounded-lg min-w-full
+    }
+    .table{
+        @apply w-full text-sm text-left text-gray-700 dark:text-gray-400
+    }
+    .table-header{
+        @apply text-xs text-teal-500 uppercase bg-gray-100
+    }
+    .table-row{
+        @apply bg-white hover:bg-teal-200 shadow-md my-2 border-b-teal-800
     }
     /* EDIT PAGE */
    

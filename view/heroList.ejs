@@ -18,7 +18,7 @@
             </h1>
 
             <!-- ADD FORM -->
-            <div class="hidden modal-overlay add-new-modal">
+            <div class="hidden add-form-modal">
                 <div class="modal-container">
                     <form action="/hero/add" method="post" id="addForm" class="modal-box bg-white pb-14">
                         <div class="mb-3 pt-0">
@@ -51,8 +51,8 @@
                 <div class="modal-container">
                     <div class="modal-box bg-white">
                         <div class="p-6 text-center">
-                            <svg class="mx-auto mb-4 w-14 h-14 text-red-400 " fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
@@ -76,8 +76,8 @@
                 <div class="modal-container">
                     <div class="modal-box bg-white">
                         <div class="p-6 text-center">
-                            <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
@@ -112,20 +112,19 @@
                             <input type="text" id="search-data" class="input-text-primary pl-10 p-2.5"
                                 placeholder="Hero's name">
                         </div>
-                        <button type="submit"
-                            class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-400 rounded-lg border border-teal-700 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 "><svg
-                                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                        <button type="submit" class="btn-primary ml-2 p-2"><svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg></button>
                     </form>
                 </div>
+
                 <!-- BUTTON ADD NEW -->
                 <div class="button-container flex-grow text-right">
-
-                    <button type="button" class="btn-primary" id="add-form-show"><svg xmlns="http://www.w3.org/2000/svg"
-                            width="20" height="20" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+                    <button type="button" class="btn-primary" id="add-form-show">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-2"
+                            viewBox="0 0 16 16">
                             <path
                                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                         </svg>Add New</button>
@@ -134,9 +133,9 @@
             </section>
 
             <!-- TABLE -->
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
-                <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
-                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+            <div class="table-container">
+                <table class="table">
+                    <thead class="table-header">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 ID
@@ -154,8 +153,7 @@
                     </thead>
                     <tbody>
                         <% for(const hero of pageData.data) { %>
-                            <tr class="data-row bg-white hover:bg-teal-200 shadow-md my-2 border-b-teal-800"
-                                data-hidden="false" data-name="<%=hero.name%>">
+                            <tr class="table-row" data-hidden="false" data-name="<%=hero.name%>">
                                 <td class="px-6 py-4 my-2">
                                     <%= hero.id %>
                                 </td class="px-6 py-4">
@@ -182,18 +180,16 @@
 
 
         <script>
-
-            function testFunction(){
-                console.log("Test")
-            }
             // SEARCH FUNCTION
             const searchInput = document.getElementById('search-data')
             const searchForm = document.querySelector('.search-form')
-            const tableRow = document.querySelectorAll('.data-row')
+            const tableRow = document.querySelectorAll('.table-row')
 
             searchForm.addEventListener('submit', (e) => {
                 e.preventDefault()
                 searchData(searchInput.value.trim().toLowerCase())
+
+                // RESET SEARCH INPUT
                 searchInput.value = ''
             })
 
@@ -206,16 +202,15 @@
                         data.classList.remove('hidden')
                     } else if (input !== data.dataset.name.toLowerCase()) {
                         data.classList.add('hidden')
-                        // notFoundDialog.classList.remove('hidden')
                     }
-                    // console.log(data.dataset.name)
                 })
                 console.log("input: " + input)
             }
 
+
             // ADD DIALOG
             const addFormBtn = document.querySelectorAll('.add-form-btn')
-            const addFormModal = document.querySelector('.add-new-modal')
+            const addFormModal = document.querySelector('.add-form-modal')
             const addForm = document.getElementById('addForm')
             const btnShowAddDialog = document.getElementById('add-form-show')
             const addModalBtn = document.querySelectorAll(".add-modal-btn")
@@ -225,38 +220,49 @@
                 addFormModal.classList.remove('hidden')
             })
 
-            addModalBtn.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const action = btn.dataset.action
-
-                    if (action == "confirm") {
-                        addForm.submit()
-                    } else {
-                        addPopUpModal.classList.add('hidden')
-                    }
-                })
-            })
-
             addFormBtn.forEach(btn => {
                 btn.addEventListener('click', e => {
                     e.preventDefault()
-
-                    const popupText = document.getElementById('add-popup-text')
-                    const inputName = document.getElementById('input-hero-name')
-                    const inputRole = document.getElementById('select-role')
-
-                    console.log(btn.value)
-                    if (btn.value == "Add") {
-                        console.log(inputName.value, inputRole.value)
-                        const heroName = inputName.value
-                        const heroRole = inputRole.value
-                        popupText.innerText = `Name: ${heroName}, Role: ${heroRole}, are you sure to add this data?`
-                        addPopUpModal.classList.remove('hidden')
-                    } else {
-                        addFormModal.classList.add('hidden')
+                    const objValue = {
+                        name: document.getElementById('input-hero-name').value,
+                        role: document.getElementById('select-role').value
                     }
+
+                    addForms(btn, objValue)
                 })
             })
+
+            addModalBtn.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    addConfirmationModalBtn(btn)
+                })
+            })
+
+            function addForms(btn, obj) {
+                const popupText = document.getElementById('add-popup-text')
+                if (btn.value == "Add") {
+                    popupText.innerText = `Name: ${obj.name}, Role: ${obj.role}, are you sure to add this data?`
+
+                    addPopUpModal.classList.remove('hidden')
+                } else {
+                    addFormModal.classList.add('hidden')
+                }
+            }
+
+            function modalActionBtn(btn, actionFunc, modal) {
+                const action = btn.dataset.action
+
+                if (action == "confirm") {
+                    actionFunc
+                } else {
+                    modal.classList.add('hidden')
+                }
+            }
+
+            function addConfirmationModalBtn(btn) {
+                const modal = addPopUpModal
+                modalActionBtn(btn, addForm.submit(), modal)
+            }
 
             // DELETE DIALOG
             const deletePopup = document.getElementById("delete-popup-modal")
@@ -277,16 +283,19 @@
 
             deleteModalBtn.forEach(btn => {
                 btn.addEventListener('click', e => {
-                    const action = btn.dataset.action
-
-                    console.log("current id: " + id)
-                    if (action == "confirm") {
-                        deleteData(id)
-                    } else {
-                        deletePopup.classList.add('hidden')
-                    }
+                    deleteModalBtnAction(btn)
                 })
             })
+
+            function deleteModalBtnAction(btn) {
+                const action = btn.dataset.action
+
+                if (action == "confirm") {
+                    deleteData(id)
+                } else {
+                    deletePopup.classList.add('hidden')
+                }
+            }
 
             function deleteData(id) {
                 deleteForm.forEach(data => {
