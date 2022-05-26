@@ -16,85 +16,82 @@
             <div class="header-primary">CURRENT DATA</div>
 
             <!-- UPDATE CONFIRMATION MODAL -->
-            <% const obj={ route : '/hero' , method : 'post' } %>
+            <div class="confirmation-modal-container hidden">
+                <%- include('./components/modal/confirmationModal.ejs') %>
+            </div>
 
-
-                <div class="confirmation-modal-container hidden">
-                    <%- include('./components/modal/confirmationModal.ejs', {obj}) %>
-                </div>
-
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
-                    <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
-                        <thead class="text-xs text-teal-500 uppercase bg-gray-100">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Hero Name
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Role
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="heroRow bg-white shadow-md my-2 border-b-teal-800" data-hidden="false"
-                                data-name="<%=hero.name%>">
-                                <td class="px-6 py-4 my-2">
-                                    <%= hero.data[0].id %>
-                                </td class="px-6 py-4">
-                                <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
-                                    <%= hero.data[0].name %>
-                                </th>
-                                <td class="px-6 py-4">
-                                    <%= hero.data[0].role %>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="header-primary">EDIT DATA</div>
-                <table class="w-full text-sm text-left text-gray-700">
-                    <form action="/hero/update" method="post" id="updateForm">
-                        <thead class="text-xs text-teal-500 uppercase bg-gray-100">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    New name
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    New role
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="heroRow bg-white  shadow-md my-2 border-b-teal-800">
-                                <td class="px-6 py-4 my-2">
-                                    <input type="text" id="id" name="id" class="input-text-primary hidden"
-                                        value="<%= hero.data[0].id %>" hidden>
-                                    <%=hero.data[0].id%>
-                                </td class="px-6 py-4">
-                                <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
-                                    <input type="text" id="name" name="name" class="input-text-primary"
-                                        value="<%= hero.data[0].name %>">
-                                </th>
-                                <td class="px-6 py-4">
-                                    <div class="mr-6">
-                                        <input type="text" id="role" name="role" class="input-text-primary"
-                                            value="<%= hero.data[0].role %>">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </form>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-w-full">
+                <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
+                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Hero Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Role
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="heroRow bg-white shadow-md my-2 border-b-teal-800" data-hidden="false"
+                            data-name="<%=hero.name%>">
+                            <td class="px-6 py-4 my-2">
+                                <%= hero.data[0].id %>
+                            </td class="px-6 py-4">
+                            <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
+                                <%= hero.data[0].name %>
+                            </th>
+                            <td class="px-6 py-4">
+                                <%= hero.data[0].role %>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-                <div class="center-element gap-5">
-                    <button class="btn-primary" id="update-popup-btn" onclick="togglePopUp(event)">Update</button>
-                    <a href="/hero"> <button class="btn-danger-fill">Cancel</button></a>
-                </div>
+            </div>
+
+            <div class="header-primary">EDIT DATA</div>
+            <table class="w-full text-sm text-left text-gray-700">
+                <form action="/hero/update" method="post" id="updateForm">
+                    <thead class="text-xs text-teal-500 uppercase bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                New name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                New role
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="heroRow bg-white  shadow-md my-2 border-b-teal-800">
+                            <td class="px-6 py-4 my-2">
+                                <input type="text" id="id" name="id" class="input-text-primary hidden"
+                                    value="<%= hero.data[0].id %>" hidden>
+                                <%=hero.data[0].id%>
+                            </td class="px-6 py-4">
+                            <th scope="row" class="px-6 py-4 font-medium text-teal-500 whitespace-nowrap">
+                                <input type="text" id="name" name="name" class="input-text-primary"
+                                    value="<%= hero.data[0].name %>">
+                            </th>
+                            <td class="px-6 py-4">
+                                <div class="mr-6">
+                                    <input type="text" id="role" name="role" class="input-text-primary"
+                                        value="<%= hero.data[0].role %>">
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
+            <div class="center-element gap-5">
+                <button class="btn-primary" id="update-popup-btn" onclick="togglePopUp(event)">Update</button>
+                <a href="/hero"> <button class="btn-danger-fill">Cancel</button></a>
+            </div>
 
 
 
