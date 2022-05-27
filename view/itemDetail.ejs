@@ -10,11 +10,16 @@
 </head>
 
 <body class="flex">
-    <%- include('./components/sidebar.ejs', (pageData = item)) %>
+    <%- include('./components/sidebar.ejs', (pageData=item)) %>
         <main
             class="flex items-center justify-center flex-col h-screen bg-gray-50 bg-cover bg-center gap-5 px-10 flex-grow">
             <div class="header-primary">CURRENT DATA</div>
 
+            <div class="alert-overlay hidden" id="successAlert">
+                <div class="success-alert" role="alert">
+                    <span class="font-medium">DATA SUCCESSFULLY UPDATED!</span>
+                </div>
+            </div>
             <!-- UPDATE CONFIRMATION MODAL -->
             <div id="update-popup-modal" tabindex="-1" class="hidden modal-overlay">
                 <div class="modal-container">
@@ -129,12 +134,26 @@
                     const action = btn.dataset.action
 
                     if (action == "confirm") {
-                        updateForm.submit()
+                        successEditData()
                     } else {
                         updatePopupModal.classList.add('hidden')
                     }
                 })
             })
+
+            function successEditData() {
+                showSuccessAlert()
+                setTimeout(() => {
+                    updateForm.submit()
+                }, 2200)
+            }
+
+            function showSuccessAlert() {
+                const alert = document.getElementById('successAlert')
+              
+                alert.classList.remove('hidden')
+                updatePopupModal.classList.add('hidden')
+            }
         </script>
 </body>
 

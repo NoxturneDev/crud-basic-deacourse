@@ -26,11 +26,11 @@
                         </div>
                         <div class="mb-3 pt-0 w-full">
                             <input type="text" placeholder="Item Name" name="name" id="input-item-name"
-                                class="input-text-primary" />
+                                class="input-text-primary" required />
                         </div>
                         <div class="mb-3 pt-0 w-full">
                             <input type="number" placeholder="Price" name="price" id="input-item-price"
-                                class="input-text-primary " />
+                                class="input-text-primary " required />
                         </div>
                         <div class="center-element w-full">
                             <input type="submit" value="Add" class="btn-primary add-form-btn" />
@@ -64,6 +64,27 @@
                 </div>
             </div>
 
+            <!-- ADD DATA SUCCESS ALERT -->
+            <div class="alert-overlay hidden" id="successAlert">
+                <div class="success-alert" role="alert">
+                    <span class="font-medium">Data Added!</span><span class="alert-text"></span>
+                </div>
+            </div>
+
+            <!-- FAILED ALERT -->
+            <div class="fail-alert hidden" role="alert" id="failAlert">
+                <span class="font-medium">Failed to add data!</span><span class="alert-text"></span>
+            </div>
+
+
+            <!-- DELETE ALERT -->
+            <div class="alert-overlay hidden" id="deleteAlert">
+                <div class="fail-alert" role="alert">
+                    <span class="font-medium"> DATA SUCCESFULLY DELETED!</span>
+                </div>
+            </div>
+
+
             <!-- DELETE MODAL -->
             <div id="delete-popup-modal" tabindex="-1" class="hidden modal-overlay">
                 <div class="modal-container">
@@ -74,7 +95,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500" id="delete-popup-text" data-name="item" data-price="tank">Are you sure?
+                            <h3 class="mb-5 text-lg font-normal text-gray-500" id="delete-popup-text" data-name="item"
+                                data-price="tank">Are you sure?
                             </h3>
                             <button data-modal-toggle="add-popup-modal" data-action="confirm" type="button"
                                 class="delete-modal-btn btn-primary">
@@ -239,6 +261,7 @@
 
                     addPopUpModal.classList.remove('hidden')
                 } else {
+                    showFailAlert()
                     addFormModal.classList.add('hidden')
                 }
             }
@@ -255,7 +278,38 @@
 
             function addConfirmationModalBtn(btn) {
                 const modal = addPopUpModal
-                modalActionBtn(btn, addForm.submit(), modal)
+                modalActionBtn(btn, successAddData(), modal)
+            }
+
+            function successAddData() {
+                showSuccessAlert()
+                setTimeout(() => {
+                    addForm.submit()
+                }, 2200)
+            }
+
+            function showSuccessAlert() {
+                const alert = document.getElementById('successAlert')
+                const alertText = document.querySelector('.alert-text')
+                const dataObj = {
+                    name: document.getElementById('input-item-name').value,
+                    price: document.getElementById('input-item-price').value
+                }
+
+                alertText.innerText = ` Data with Name: ${dataObj.name.toUpperCase()}, Price: ${dataObj.price.toUpperCase()}, successfully added!`
+                alert.classList.remove('hidden')
+                addPopUpModal.classList.add('hidden')
+                addFormModal.classList.add('hidden')
+            }
+
+            function showFailAlert() {
+                const alert = document.getElementById('failAlert')
+                alert.classList.remove('hidden')
+                addPopUpModal.classList.add('hidden')
+                addFormModal.classList.add('hidden')
+                setTimeout(() => {
+                    alert.classList.add('hidden')
+                }, 2200)
             }
 
             // DELETE DIALOG
@@ -293,11 +347,20 @@
 
             function deleteData(id) {
                 deleteForm.forEach(data => {
-                    console.log("data id is: " + data.dataset.id)
                     if (id == data.dataset.id) {
-                        data.submit()
+                        showDeleteAlert(data)
                     }
                 })
+            }
+
+            function showDeleteAlert(deleteData) {
+                const alert = document.getElementById('deleteAlert')
+                deletePopup.classList.add('hidden')
+                alert.classList.remove('hidden')
+                setTimeout(() => {
+                    alert.classList.add('hidden')
+                    deleteData.submit()
+                }, 2200)
             }
         </script>
 </body>

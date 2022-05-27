@@ -26,10 +26,10 @@
                         </div>
                         <div class="mb-3 pt-0 w-full">
                             <input type="text" placeholder="Hero Name" name="name" id="input-hero-name"
-                                class="input-text-primary" />
+                                class="input-text-primary" required />
                         </div>
                         <div class="mb-3 pt-0 w-full">
-                            <select name="role" id="select-role" class="input-text-primary hover:bg-teal-400">
+                            <select name="role" id="select-role" class="input-text-primary hover:bg-teal-400" required>
                                 <option value="Assassin" class="hover:bg-teal-400">Assassin</option>
                                 <option value="Tank" class="hover:bg-teal-400">Tank</option>
                                 <option value="Fighter" class="hover:bg-teal-400">Fighter</option>
@@ -70,6 +70,25 @@
                 </div>
             </div>
 
+            <!-- ADD DATA SUCCESS ALERT -->
+            <div class="alert-overlay hidden" id="successAlert">
+                <div class="success-alert" role="alert">
+                    <span class="font-medium">Data Added!</span><span class="alert-text"></span>
+                </div>
+            </div>
+
+            <!-- FAILED ALERT -->
+                <div class="fail-alert hidden" role="alert" id="failAlert">
+                    <span class="font-medium">Failed to add data!</span><span class="alert-text"></span>
+                </div>
+
+
+             <!-- DELETE ALERT -->
+             <div class="alert-overlay hidden" id="deleteAlert">
+                <div class="fail-alert" role="alert">
+                    <span class="font-medium"> DATA SUCCESFULLY DELETED!</span>
+                </div>
+            </div>
 
             <!-- DELETE MODAL -->
             <div id="delete-popup-modal" tabindex="-1" class="hidden modal-overlay">
@@ -245,6 +264,7 @@
 
                     addPopUpModal.classList.remove('hidden')
                 } else {
+                    showFailAlert()
                     addFormModal.classList.add('hidden')
                 }
             }
@@ -261,9 +281,40 @@
 
             function addConfirmationModalBtn(btn) {
                 const modal = addPopUpModal
-                modalActionBtn(btn, addForm.submit(), modal)
+                modalActionBtn(btn, successAddData(), modal)
             }
 
+            function successAddData() {
+                showSuccessAlert()
+                setTimeout(() => {
+                    addForm.submit()
+                }, 2200)
+            }
+
+            function showSuccessAlert(){
+                const alert = document.getElementById('successAlert')
+                const alertText = document.querySelector('.alert-text')
+                const dataObj = {
+                    name: document.getElementById('input-hero-name').value,
+                    role: document.getElementById('select-role').value
+                }
+
+                alertText.innerText = ` Data with Name: ${dataObj.name.toUpperCase()}, Role: ${dataObj.role.toUpperCase()}, successfully added!`
+                alert.classList.remove('hidden')
+                addPopUpModal.classList.add('hidden')
+                addFormModal.classList.add('hidden')
+            }
+
+            function showFailAlert(){
+                const alert = document.getElementById('failAlert')
+                alert.classList.remove('hidden')
+                addPopUpModal.classList.add('hidden')
+                addFormModal.classList.add('hidden')
+                setTimeout(() => {
+                    alert.classList.add('hidden')
+                }, 2200)
+            }
+        
             // DELETE DIALOG
             const deletePopup = document.getElementById("delete-popup-modal")
             const deleteBtn = document.querySelectorAll('.delete-data')
@@ -299,11 +350,20 @@
 
             function deleteData(id) {
                 deleteForm.forEach(data => {
-                    console.log("data id is: " + data.dataset.id)
                     if (id == data.dataset.id) {
-                        data.submit()
+                        showDeleteAlert(data)
                     }
                 })
+            }
+
+            function showDeleteAlert(deleteData){
+                const alert = document.getElementById('deleteAlert')
+                deletePopup.classList.add('hidden')
+                alert.classList.remove('hidden')
+                setTimeout(() => {
+                    alert.classList.add('hidden')
+                    deleteData.submit()
+                }, 2200)
             }
         </script>
 </body>
